@@ -46,9 +46,9 @@ You will get Address of the contract in the console, change the `nftAddress` in 
 ### Mint
 
 #### Mint to Testnet
-- run `cp whitelist.example whitelist.txt` and put your whitelist in `whitelist.txt`
+- run `cp whitelist.example.txt whitelist.txt` and put your whitelist in `whitelist.txt`
 - run `npm run mint -- --network reitestnet`
   
 - #### Mint to Mainnet
-- run `cp whitelist.example whitelist.txt` and put your whitelist in `whitelist.txt`
+- run `cp whitelist.example.txt whitelist.txt` and put your whitelist in `whitelist.txt`
 - run `npm run mint -- --network reimainnet`
