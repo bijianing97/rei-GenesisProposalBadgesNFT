@@ -1,9 +1,6 @@
 import fs from "fs";
 import path from "path";
 import { ethers } from "hardhat";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 async function main() {
   const deployer = (await ethers.getSigners())[0].address;
@@ -32,12 +29,12 @@ async function main() {
     "\n"
   );
 
-  const nft = await ethers.getContractFactory("reiNFT");
+  const nft = await ethers.getContractFactory("ReiGenesisProposalBadgesNFT");
   const nftInstance = nft.attach(process.env.nftAddress!);
   for (let i = 0; i < Math.ceil(whitelist.length / 10); i++) {
     const users = whitelist.slice(i * 10, i * 10 + 10);
     const tx = await nftInstance.batchMint(users);
-    await tx.wait;
+    await tx.wait();
     console.log("mint to:", users);
   }
   console.log("mint finished");

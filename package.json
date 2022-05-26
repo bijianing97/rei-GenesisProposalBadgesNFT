@@ -4,7 +4,7 @@
     "build": "npx hardhat compile",
     "deploy": "npx hardhat run scripts/deploy.ts",
     "mint": "npx hardhat run scripts/batchMint.ts",
-    "test:reiNFT": "npx hardhat test test/reiNFT.test.ts"
+    "test:nft": "npx hardhat test test/ReiGenesisProposalBadgesNFT.test.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",

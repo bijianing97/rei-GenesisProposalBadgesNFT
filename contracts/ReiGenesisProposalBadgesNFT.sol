@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 
-contract reiNFT is Context, ERC721, Ownable {
+contract ReiGenesisProposalBadgesNFT is Context, ERC721, Ownable {
     string public baseURI;
     uint256 autoIncreaseTokenId = 0;
 
@@ -15,7 +15,7 @@ contract reiNFT is Context, ERC721, Ownable {
         string memory symbol,
         string memory uri
     ) ERC721(name, symbol) {
-        _setBaseURI(uri);
+        baseURI = uri;
     }
 
     function mint(address to) public onlyOwner {
@@ -25,13 +25,8 @@ contract reiNFT is Context, ERC721, Ownable {
 
     function batchMint(address[] memory to) public onlyOwner {
         for (uint256 i = 0; i < to.length; i++) {
-            address user = to[i];
-            mint(user);
+            mint(to[i]);
         }
-    }
-
-    function _setBaseURI(string memory uri) internal onlyOwner {
-        baseURI = uri;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {

@@ -1,7 +1,7 @@
-import { expect } from "chai";
+import { expect, assert } from "chai";
 import { ethers } from "hardhat";
 
-describe("reiNFT", function () {
+describe("NFT", function () {
   before(async function () {
     this.name = "name";
     this.symbol = "symbol";
@@ -12,7 +12,10 @@ describe("reiNFT", function () {
     for (let i = 1; i <= 12; i++) {
       this.whitelist.push(this.signers[i]);
     }
-    const reiNFT = await ethers.getContractFactory("reiNFT", this.deployer);
+    const reiNFT = await ethers.getContractFactory(
+      "ReiGenesisProposalBadgesNFT",
+      this.deployer
+    );
     this.nft = await reiNFT.deploy(this.name, this.symbol, this.uri);
     this.nftInstance = await this.nft.deployed();
   });
@@ -47,5 +50,21 @@ describe("reiNFT", function () {
         expect(await this.nftInstance.balanceOf(address)).to.equal("1");
       })
     );
+  });
+
+  it("should mint and batchMint failed", async function () {
+    try {
+      await this.nftInstance
+        .connect(this.signers[1])
+        .mint(this.deployer.address);
+      assert.fail("should't succeed");
+    } catch (err) {}
+
+    try {
+      await this.nftInstance
+        .connect(this.signers[1])
+        .batchMint([this.deployer.address]);
+      assert.fail("should't succeed");
+    } catch (err) {}
   });
 });
